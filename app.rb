@@ -35,5 +35,10 @@ def fight (player1, player2)
   end
 end
 
-# Testing with pry
-binding.pry
+def perform
+  player1 = Player.new("Josiane")
+  player2 = Player.new("José")
+  fight(player1, player2)
+end
+
+perform
