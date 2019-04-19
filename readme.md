@@ -38,10 +38,10 @@ Quand on s'attaque à un gros morceau comme Fortnite, il y a un max de fonctionn
 
 Que faut-il pour faire un combat ? Moi j'ai en tête qu'il faut a minima :
 
-    2 joueurs ;
-    Que chaque joueur ait un niveau de vie donné ;
-    Que ce niveau de vie baisse à chaque attaque subie ;
-    Si la vie atteint zéro, le personnage est mort.
+* 2 joueurs ;
+* Que chaque joueur ait un niveau de vie donné ;
+* Que ce niveau de vie baisse à chaque attaque subie ;
+* Si la vie atteint zéro, le personnage est mort.
 
 Difficile de faire plus simple... Alors allons-y ! On va commencer par coder tout ça dans le fichier player.rb qui va donc accueillir la classe Player dont le but est de modéliser un joueur. Je vais te décrire chaque caractéristique d'un objet Player, charge à toi d'écrire le code !
 
@@ -51,12 +51,12 @@ Un joueur possède 2 attributs que tu vas mettre en attr_accessor : un nom @name
 
 Quand on veut créer un objet Player, on ne met que son nom en entrée car le niveau de vie est le même pour tout le monde au début (10 pts de vie). Écris la méthode initialize afin qu'on ait la réaction suivante si on lance app.rb et qu'on utilise PRY :
 
-[1] pry(main)> player1 = Player.new("José")
-=> #<Player:0x000055e2ae15e910 @life_points=10, @name="José">
-[2] pry(main)> player1.name
-=> "José"
-[3] pry(main)> player1.life_points
-=> 10
+    [1] pry(main)> player1 = Player.new("José")
+    => #<Player:0x000055e2ae15e910 @life_points=10, @name="José">
+    [2] pry(main)> player1.name
+    => "José"
+    [3] pry(main)> player1.life_points
+    => 10
 
 ### b) Player : afficher l'état d'un joueur avec show_state
 
@@ -64,11 +64,11 @@ On sait que les joueurs vont se mettre sur la tronche et que donc leur niveau de
 
 Tout comme dans l'exemple ci-dessus, cette méthode doit permettre d'obtenir le résultat suivant si on lance app.rb et qu'on utilise PRY:
 
-[1] pry(main)> player1 = Player.new("José")
-=> #<Player:0x000055c8d3bcb960 @life_points=10, @name="José">
-[2] pry(main)> player1.show_state
-José a 10 points de vie
-=> nil
+    [1] pry(main)> player1 = Player.new("José")
+    => #<Player:0x000055c8d3bcb960 @life_points=10, @name="José">
+    [2] pry(main)> player1.show_state
+    José a 10 points de vie
+    => nil
 
 ### c) Player : subir une attaque avec gets_damage
 
@@ -99,6 +99,7 @@ Petite aide : pour ceux qui sont COMPLEMENT perdus dans l'écriture de cette pre
 Il n'y aura pas d'autre aide donc c'est important que tu saisisses MAINTENANT la logique. Quitte à te la faire expliquer par un co-moussaillon !
 
 -début de l'aide-
+
     def gets_damage(damage_received) #damage_received est un entier qu'on met en entrée de la méthode
 
     #On soustrait l'entier en entrée au niveau de vie de l'objet sur lequel la méthode est appliquée :
@@ -112,6 +113,7 @@ Il n'y aura pas d'autre aide donc c'est important que tu saisisses MAINTENANT la
     end
 
     end
+    
 -fin de l'aide-
 
 ### d) Player : attaquer avec attacks
@@ -120,17 +122,17 @@ On est à présent capable de faire baisser les points de vie d'un joueur avec g
 
 Code cette méthode en respectant ces contraintes :
 
-    La méthode prend donc en entrée un objet Player qui est le joueur subissant l'attaque ;
-    La méthode commence par annoncer "le joueur [nom de player1] attaque le joueur [nom de player2]" avec un puts ;
-    Ensuite on doit calculer les dommages que player1 va faire subir à player2. Pour des raisons que tu comprendras plus tard, on va créer une méthode à part s'appelant compute_damage qui va faire ce calcul. Et dans la pure tradition des jeux de rôle, les dommages seront aléatoires car égaux au résultat d'un lancé de dé (= un chiffre au hasard entre 1 et 6). Voici le code de notre méthode compute_damage que tu vas mettre juste à la suite de attacks :
+* La méthode prend donc en entrée un objet Player qui est le joueur subissant l'attaque ;
+* La méthode commence par annoncer "le joueur [nom de player1] attaque le joueur [nom de player2]" avec un puts ;
+* Ensuite on doit calculer les dommages que player1 va faire subir à player2. Pour des raisons que tu comprendras plus tard, on va créer une méthode à part s'appelant compute_damage qui va faire ce calcul. Et dans la pure tradition des jeux de rôle, les dommages seront aléatoires car égaux au résultat d'un lancé de dé (= un chiffre au hasard entre 1 et 6). Voici le code de notre méthode compute_damage que tu vas mettre juste à la suite de attacks :
 
       def compute_damage
         return rand(1..6)
       end
 
-    Maintenant, dans attacks, fais appel à compute_damage et stocke le résultat dans une variable.
-    Fais subir les dégâts à l'autre Player en utilisant ces dommages et la méthode gets_damage.
-    À présent puts une phrase qui explique ce qui vient de se passer : "il lui inflige XXXX points de dommages"
+* Maintenant, dans attacks, fais appel à compute_damage et stocke le résultat dans une variable.
+* Fais subir les dégâts à l'autre Player en utilisant ces dommages et la méthode gets_damage.
+* À présent puts une phrase qui explique ce qui vient de se passer : "il lui inflige XXXX points de dommages"
 
 Voici le fonctionnement qu'on doit obtenir en exécutant app.rb et en utilisant PRY :
 
@@ -159,12 +161,12 @@ Je vais à nouveau te guider pas à pas. N'oublie pas de vérifier que chaque é
 
 Allez c'est parti :
 
-    À ma droite "Josiane" : crée un Player répondant à ce doux prénom et stocké dans la variable player1.
-    À ma gauche "José" : crée un autre Player répondant à ce joli prénom et stocké dans la variable player2.
-    Présentons les deux combattants : affiche dans le terminal l'état de chaque combattant grâce à des puts et des show_state. Juste avant, affiche un petit puts "Voici l'état de chaque joueur :".
-    Fight ! Indique que le combat commence avec un puts "Passons à la phase d'attaque :".
-    Josiane aura l'honneur d'attaquer la première : fais attaquer player2 par player1 avec la méthode attacks.
-    José ne va pas se laisser faire : fais l'attaque inverse.
+* À ma droite "Josiane" : crée un Player répondant à ce doux prénom et stocké dans la variable player1.
+* À ma gauche "José" : crée un autre Player répondant à ce joli prénom et stocké dans la variable player2.
+* Présentons les deux combattants : affiche dans le terminal l'état de chaque combattant grâce à des puts et des show_state. Juste avant, affiche un petit puts "Voici l'état de chaque joueur :".
+* Fight ! Indique que le combat commence avec un puts "Passons à la phase d'attaque :".
+* Josiane aura l'honneur d'attaquer la première : fais attaquer player2 par player1 avec la méthode attacks.
+* José ne va pas se laisser faire : fais l'attaque inverse.
 
 Si tu exécutes le code en l'état, tu devrais avoir un premier round d'attaque entre nos deux gladiateurs. C'est déjà un bon début ! Mais José et Josiane doivent à présent combattre jusqu'à la mort 👎. Ils doivent donc s'attaquer jusqu'à ce que l'un des deux n'ait plus de point de vie. Es-tu déjà en mesure de voir comment faire ?
 
@@ -235,8 +237,8 @@ Commence par définir en attr_accessor la variable weapon_level qui définira, s
 
 Maintenant tu vas définir une nouvelle méthode initialize qui prend toujours uniquement le name en entrée mais, à la différence de celle des Player :
 
-    Elle donne une valeur de 100 à @life_points.
-    Elle fixe @weapon_level = 1.
+* Elle donne une valeur de 100 à @life_points.
+* Elle fixe @weapon_level = 1.
 
 Et vu qu'on modifie la nature de cet objet, autant modifier la façon de présenter le joueur. Tu vas changer la méthode show_state afin qu'elle affiche une phrase du genre "XXX a YYY points de vie et une arme de niveau ZZZ".
 
@@ -244,9 +246,9 @@ Et vu qu'on modifie la nature de cet objet, autant modifier la façon de présen
 
 C'est cool que les HumanPlayer aient une arme avec un @weapon_level, mais il faut que ça serve en combat ! On va faire de @weapon_level un multiplicateur des dégâts. Tu vas créer, dans HumanPlayer, une nouvelle méthode compute_damage pour refléter cela :
 
-def compute_damage
-    rand(1..6) * @weapon_level
-  end
+    def compute_damage
+      rand(1..6) * @weapon_level
+    end
 
 Du coup tu comprends mieux pourquoi, dans la classe Player, je t'avais fait créer une méthode compute_damage toute seule. C'était pour anticiper le fait que la ligne rand(1..6) allait devoir prendre en compte l'existence d'un @weapon_level dans la classe HumanPlayer. Grâce à ça, on a juste à modifier la méthode très courte compute_damage et non pas la méthode attacks entière.
 
@@ -256,20 +258,20 @@ Si tu suis bien, une fois que tu as fait ce travail, les joueurs de type Player 
 
 Une nouvelle fonctionnalité spécifique aux HumanPlayer sera la possibilité pour lui d'aller chercher une nouvelle arme, plus puissante. Pour cela, tu vas coder, dans la classe HumanPlayer, une méthode search_weapon qui va faire les choses suivantes :
 
-    Elle va commencer par lancer un "dé" dont le résultat sera compris entre 1 et 6 (tu sais faire ça maintenant non?).
-    Ce lancé de dé sera égal au niveau de la nouvelle arme trouvée. Annonce le résultat de la recherche à l'utilisateur en affichant un message du genre "Tu as trouvé une arme de niveau XXX".
-    Maintenant, cherche à savoir si ça vaut le coup pour le joueur Human Player de la garder… Utilise un if pour comparer le niveau de cette nouvelle arme avec celle qu'il possède déjà (@weapon_level).
-    Si l'arme trouvée est d'un niveau strictement supérieur, il la garde. Son @weapon_level prend alors la valeur de la nouvelle arme et tu affiches un message du genre "Youhou ! elle est meilleure que ton arme actuelle : tu la prends."
-    Si l'arme trouvée est égale ou moins bien que son arme actuelle, tu ne changes rien et ne fais qu'afficher un petit "... elle n'est pas mieux que ton arme actuelle..."
+* Elle va commencer par lancer un "dé" dont le résultat sera compris entre 1 et 6 (tu sais faire ça maintenant non?).
+* Ce lancé de dé sera égal au niveau de la nouvelle arme trouvée. Annonce le résultat de la recherche à l'utilisateur en affichant un message du genre "Tu as trouvé une arme de niveau XXX".
+* Maintenant, cherche à savoir si ça vaut le coup pour le joueur Human Player de la garder… Utilise un if pour comparer le niveau de cette nouvelle arme avec celle qu'il possède déjà (@weapon_level).
+* Si l'arme trouvée est d'un niveau strictement supérieur, il la garde. Son @weapon_level prend alors la valeur de la nouvelle arme et tu affiches un message du genre "Youhou ! elle est meilleure que ton arme actuelle : tu la prends."
+* Si l'arme trouvée est égale ou moins bien que son arme actuelle, tu ne changes rien et ne fais qu'afficher un petit "... elle n'est pas mieux que ton arme actuelle..."
 
 ### e) HumanPlayer : chercher un pack de points de vie
 
 Une autre fonctionnalité qu'auront les HumanPlayer : ils pourront partir à la recherche d'un pack de points de vie afin de faire remonter leur niveau de vie. De façon assez similaire à la méthode search_weapon, tu vas coder une méthode search_health_pack qui va se comporter comme suit :
 
-    Elle commence également par lancer un "dé" dont le résultat sera compris entre 1 et 6. En fonction du résultat, voilà ce qu'elle devra faire :
-    Si le résultat est égal à 1, le joueur n'a rien trouvé et on retourne simplement le string "Tu n'as rien trouvé... ".
-    Si le résultat est compris entre 2 (inclus) et 5 (inclus), le joueur a trouvé un pack de 50 points de vie. On va donc augmenter sa vie de 50 points mais sans qu'elle puisse dépasser 100 points. Puis on va retourner le string "Bravo, tu as trouvé un pack de +50 points de vie !".
-    Si le résultat est égal à 6, le joueur a trouvé un pack de 80 points de vie. On va donc augmenter sa vie de 80 points mais sans qu'elle puisse dépasser 100 points. Puis on va retourner le string "Waow, tu as trouvé un pack de +80 points de vie !".
+* Elle commence également par lancer un "dé" dont le résultat sera compris entre 1 et 6. En fonction du résultat, voilà ce qu'elle devra faire :
+* Si le résultat est égal à 1, le joueur n'a rien trouvé et on retourne simplement le string "Tu n'as rien trouvé... ".
+* Si le résultat est compris entre 2 (inclus) et 5 (inclus), le joueur a trouvé un pack de 50 points de vie. On va donc augmenter sa vie de 50 points mais sans qu'elle puisse dépasser 100 points. Puis on va retourner le string "Bravo, tu as trouvé un pack de +50 points de vie !".
+* Si le résultat est égal à 6, le joueur a trouvé un pack de 80 points de vie. On va donc augmenter sa vie de 80 points mais sans qu'elle puisse dépasser 100 points. Puis on va retourner le string "Waow, tu as trouvé un pack de +80 points de vie !".
 
 ### f) Combat interactif sur app_2.rb : toi contre José et Josiane
 
@@ -277,39 +279,39 @@ OK, tous les ingrédients sont prêts: il ne nous reste plus qu'à mettre le tou
 
 Le fichier qui va orchestrer tout cela va s'appeler app_2.rb afin que tu gardes intacte ta version 1.0 sur app.rb. Commence donc par créer ce fichier (toujours à la racine de ton dossier) et fais-le commencer par les mêmes 4 lignes de code que ton app.rb de base :
 
-require 'bundler'
-Bundler.require
+    require 'bundler'
+    Bundler.require
 
-require_relative 'lib/game'
-require_relative 'lib/player'
+    require_relative 'lib/game'
+    require_relative 'lib/player'
 
 Maintenant, voici la liste de ce que tu dois coder dans app_2.rb. Fais-le au fur et à mesure, et ne passe à l'étape suivante que si ton code marche :
 
-    Accueil : Commence par afficher dans le terminal, au lancement de app_2.rb, un petit message de démarrage du jeu. Laisse libre cours à ton imagination mais voici un exemple basique :
+* Accueil : Commence par afficher dans le terminal, au lancement de app_2.rb, un petit message de démarrage du jeu. Laisse libre cours à ton imagination mais voici un exemple basique :
 
-    ------------------------------------------------
+    -------------------------------------------------
     |Bienvenue sur 'ILS VEULENT TOUS MA POO' !      |
     |Le but du jeu est d'être le dernier survivant !|
     -------------------------------------------------
 
-    Initialisation du joueur: ensuite, le jeu va demander à l'utilisateur son prénom et créer un HumanPlayer portant ce prénom.
-    Initialisation des ennemis : le jeu va maintenant créer nos deux combattants préférés, "Josiane" et "José".
-    Comme nous savons qu'à terme (version 3.0) il y aura plus de 2 ennemis, on va mettre en place une astuce pour manipuler facilement un groupe d'ennemis : le jeu va créer un array enemies qui va contenir les deux objets Player que sont José et Josiane. Tu verras plus tard l'usage qu'on va en faire.
-    Le combat : tout comme dans la version 1.0, on peut maintenant lancer le combat ! Tu vas ouvrir une boucle while qui ne doit s'arrêter que si le joueur de l'utilisateur (HumanPlayer) meurt ou si les 2 joueurs "bots" (Player) meurent. Cette condition d'arrêt n'est pas triviale à écrire mais je te propose d'essayer ! Sinon la réponse est disponible plus bas. Laisse la boucle while vide pour le moment, on la codera juste après.
-    Fin du jeu : maintenant, si on sort de cette boucle while, c'est que la partie est terminée. Donc juste en dessous du end de la boucle, on va préparer un petit message de fin. Le jeu doit afficher "La partie est finie" et ensuite soit afficher "BRAVO ! TU AS GAGNE !" si le joueur humain est toujours en vie, ou "Loser ! Tu as perdu !" s'il est mort.
+* Initialisation du joueur: ensuite, le jeu va demander à l'utilisateur son prénom et créer un HumanPlayer portant ce prénom.
+* Initialisation des ennemis : le jeu va maintenant créer nos deux combattants préférés, "Josiane" et "José".
+* Comme nous savons qu'à terme (version 3.0) il y aura plus de 2 ennemis, on va mettre en place une astuce pour manipuler facilement un groupe d'ennemis : le jeu va créer un array enemies qui va contenir les deux objets Player que sont José et Josiane. Tu verras plus tard l'usage qu'on va en faire.
+* Le combat : tout comme dans la version 1.0, on peut maintenant lancer le combat ! Tu vas ouvrir une boucle while qui ne doit s'arrêter que si le joueur de l'utilisateur (HumanPlayer) meurt ou si les 2 joueurs "bots" (Player) meurent. Cette condition d'arrêt n'est pas triviale à écrire mais je te propose d'essayer ! Sinon la réponse est disponible plus bas. Laisse la boucle while vide pour le moment, on la codera juste après.
+* Fin du jeu : maintenant, si on sort de cette boucle while, c'est que la partie est terminée. Donc juste en dessous du end de la boucle, on va préparer un petit message de fin. Le jeu doit afficher "La partie est finie" et ensuite soit afficher "BRAVO ! TU AS GAGNE !" si le joueur humain est toujours en vie, ou "Loser ! Tu as perdu !" s'il est mort.
 
 Très bien, on a l'ossature globale du jeu version 2.0 mais il reste à coder le combat ! Voici ce que tu vas mettre dans la boucle while :
 
-    Tout d'abord, on te donne la condition d'arrêt de la boucle en partant de l'hypothèse que tu as stocké le HumanPlayer dans la variable user et les deux Player dans les variables player1 et player2.
+Tout d'abord, on te donne la condition d'arrêt de la boucle en partant de l'hypothèse que tu as stocké le HumanPlayer dans la variable user et les deux Player dans les variables player1 et player2.
 
     while user.life_points >0 && (player1.life_points > 0 || player2.life_points >0)
       ...
     end
 
-    La première chose qu'on va faire à chaque tour de combat, c'est afficher l'état du HumanPlayer : rajoute cela.
-    Ensuite, on va proposer un menu qui doit ressembler à cela :
+La première chose qu'on va faire à chaque tour de combat, c'est afficher l'état du HumanPlayer : rajoute cela.
+Ensuite, on va proposer un menu qui doit ressembler à cela :
 
-    Quelle action veux-tu effectuer ?
+Quelle action veux-tu effectuer ?
 
     a - chercher une meilleure arme
     s - chercher à se soigner
@@ -318,15 +320,18 @@ Très bien, on a l'ossature globale du jeu version 2.0 mais il reste à coder le
     0 - Josiane a 10 points de vie
     1 - José a 10 points de vie
 
-    Évidemment la partie "Josiane a 10 points de vie" et "José a 10 points de vie" devra se mettre à jour quand ils vont recevoir des dégâts. Tu dois donc utiliser la méthode show_state dans cette partie du menu pour afficher l'état réel de chaque Player que l'utilisateur combat.
-    Une fois cela fait, on laisse l'utilisateur effectuer une saisie. Et en fonction de la saisie, on va :
-        si l'utilisateur tape "a", exécuter sur son HumanPlayer la méthode qui le fait partir à la recherche d'une arme ;
-        si l'utilisateur tape "s", exécuter sur son HumanPlayer la méthode qui le fait partir à la recherche d'un pack de soin ;
-        si l'utilisateur tape "0", faire attaquer Josiane par son Human Player ;
-        si l'utilisateur tape "1", faire attaquer José par son Human Player ;
-    C'est maintenant au tour des ennemis de riposter ! Tu peux l'indiquer en affichant en console un petit puts "Les autres joueurs t'attaquent !"
-    On va faire que les 2 Player attaquent le HumanPlayer. Mais au lieu d'écrire 2 lignes quasiment identiques en mode player1.attacks(user) et player2.attacks(user), je veux que tu utilises l'array enemies contenant les 2 objets Player. L'idée est de faire une boucle each sur cet array pour ensuite exécuter la méthode attacks sur chaque objet. Pourquoi ? Tout simplement car on anticipe là le fait qu'il y aura bientôt 10 ou 20 ou 30 Player : on va pas se taper 10 ou 20 ou 30 lignes de playerX.attacks(user) !
-    Ha oui, un petit dernier truc : il ne faut pas qu'un Player puisse attaquer s'il est mort… Donc rajoute un petit if dans ta boucle each.
+Évidemment la partie "Josiane a 10 points de vie" et "José a 10 points de vie" devra se mettre à jour quand ils vont recevoir des dégâts. Tu dois donc utiliser la méthode show_state dans cette partie du menu pour afficher l'état réel de chaque Player que l'utilisateur combat.
+
+Une fois cela fait, on laisse l'utilisateur effectuer une saisie. Et en fonction de la saisie, on va :
+* si l'utilisateur tape "a", exécuter sur son HumanPlayer la méthode qui le fait partir à la recherche d'une arme ;
+* si l'utilisateur tape "s", exécuter sur son HumanPlayer la méthode qui le fait partir à la recherche d'un pack de soin ;
+* si l'utilisateur tape "0", faire attaquer Josiane par son Human Player ;
+* si l'utilisateur tape "1", faire attaquer José par son Human Player ;
+
+C'est maintenant au tour des ennemis de riposter ! Tu peux l'indiquer en affichant en console un petit puts "Les autres joueurs t'attaquent !"
+
+* On va faire que les 2 Player attaquent le HumanPlayer. Mais au lieu d'écrire 2 lignes quasiment identiques en mode player1.attacks(user) et player2.attacks(user), je veux que tu utilises l'array enemies contenant les 2 objets Player. L'idée est de faire une boucle each sur cet array pour ensuite exécuter la méthode attacks sur chaque objet. Pourquoi ? Tout simplement car on anticipe là le fait qu'il y aura bientôt 10 ou 20 ou 30 Player : on va pas se taper 10 ou 20 ou 30 lignes de playerX.attacks(user) !
+* Ha oui, un petit dernier truc : il ne faut pas qu'un Player puisse attaquer s'il est mort… Donc rajoute un petit if dans ta boucle each.
 
 Super ! Tu es arrivé au bout de la version 2.0 de ton Fornite-like ! Lance plusieurs combats, fais plein de tests et compare les résultats avec tes fellow moussaillons. N'hésite pas à mettre des petits gets.chomp ici et là qui auront pour seul objectif de faire une petite pause dans l'affichage du texte du jeu sur le terminal. Ça aidera à la lecture et à suivre ce qu'il se passe.
 
@@ -342,15 +347,15 @@ Notre fichier app_2.rb gère beaucoup trop de chose et il est trop long pour que
 
 Voici ce que tu dois faire dans la classe Game (80 % du travail consiste à rapatrier du code depuis app_2.rb) :
 
-    Crée la classe Game qui aura 2 attr_accessor : un @human_player de type HumanPlayer et un array @enemies qui contiendra des Player.
-    Un objet Game s'initialise ainsi : my_game = Game.new("Wolverine"). Il crée automatiquement 4 Player qu'il met dans @enemies et un HumanPlayer portant (dans cet exemple) le nom "Wolverine".
-    Écris une méthode kill_player qui prend un objet Player en entrée et le supprime de @enemies. Cette méthode permet d'éliminer un adversaire tué.
-    Écris une méthode is_still_ongoing? qui retourne true si le jeu est toujours en cours et false sinon. Le jeu continue tant que le @human_player a encore des points de vie et qu'il reste des Player à combattre dans l’array @enemies.
-    Écris une méthode show_players qui va afficher 1) l'état du joueur humain et 2) le nombre de joueurs "bots" restant
-    Écris une méthode menu qui va afficher le menu de choix (juste l'afficher, pas plus). On a les mêmes choix que dans la version 2.0 à la seule différence qu'il y a plus de 2 ennemis à combattre et que si un ennemi est mort, on ne doit plus proposer de l'attaquer.
-    Écris une méthode menu_choice qui prend en entrée un string. Cette méthode va permettre de faire réagir le jeu en fonction du choix, dans le menu, de l'utilisateur. Par exemple, si l'entrée est "a", le @human_player doit aller chercher une arme. Si l'entrée est "0", on le fait attaquer l'ennemi présenté au choix "0", etc. Pense à faire appel, dans cette méthode, à la méthode kill_player si jamais un Player est tué par le joueur humain !
-    Écris une méthode enemies_attack qui va faire riposter tous les ennemis vivants. Ils vont attaquer à tour de rôle le joueur humain.
-    Écris une méthode end qui va effectuer l'affichage de fin de jeu. Tu sais, la partie "le jeu est fini" puis "Bravo..." ou "Loser..."
+* Crée la classe Game qui aura 2 attr_accessor : un @human_player de type HumanPlayer et un array @enemies qui contiendra des Player.
+* Un objet Game s'initialise ainsi : my_game = Game.new("Wolverine"). Il crée automatiquement 4 Player qu'il met dans @enemies et un HumanPlayer portant (dans cet exemple) le nom "Wolverine".
+* Écris une méthode kill_player qui prend un objet Player en entrée et le supprime de @enemies. Cette méthode permet d'éliminer un adversaire tué.
+* Écris une méthode is_still_ongoing? qui retourne true si le jeu est toujours en cours et false sinon. Le jeu continue tant que le @human_player a encore des points de vie et qu'il reste des Player à combattre dans l’array @enemies.
+* Écris une méthode show_players qui va afficher 1) l'état du joueur humain et 2) le nombre de joueurs "bots" restant
+* Écris une méthode menu qui va afficher le menu de choix (juste l'afficher, pas plus). On a les mêmes choix que dans la version 2.0 à la seule différence qu'il y a plus de 2 ennemis à combattre et que si un ennemi est mort, on ne doit plus proposer de l'attaquer.
+* Écris une méthode menu_choice qui prend en entrée un string. Cette méthode va permettre de faire réagir le jeu en fonction du choix, dans le menu, de l'utilisateur. Par exemple, si l'entrée est "a", le @human_player doit aller chercher une arme. Si l'entrée est "0", on le fait attaquer l'ennemi présenté au choix "0", etc. Pense à faire appel, dans cette méthode, à la méthode kill_player si jamais un Player est tué par le joueur humain !
+* Écris une méthode enemies_attack qui va faire riposter tous les ennemis vivants. Ils vont attaquer à tour de rôle le joueur humain.
+* Écris une méthode end qui va effectuer l'affichage de fin de jeu. Tu sais, la partie "le jeu est fini" puis "Bravo..." ou "Loser..."
 
 ### b) app_3.rb en chef d'orchestre
 
@@ -366,14 +371,14 @@ On aimerait bien que notre Fornite-like permette de combattre 10 ou 20 ennemis s
 
 On va mettre en place un système où les ennemies vont débarquer au compte-goutte, un peu comme dans les jeux où on tombe sur eux au hasard de tes déplacements sur la carte. Pour ça, on va suivre à la fois le nombre d'ennemis toujours présents dans le jeu ( = ennemis restant à éliminer) et le nombre d'ennemis qui sont "en vue" (= ennemis qu'on peut attaquer et qui peuvent nous attaquer en retour). Voilà comment on va faire dans la classe Game :
 
-    Rajoute deux attributs : @players_left qui est un integer qu'on initialize à 10 et @enemies_in_sight qui vient remplacer @enemies et qui est un array vide au départ. Tu l'as compris car j'ai bien nommé mes variables (prends en de la graine) : @players_left représente le nombre de joueur restant dans le jeu (= nombre restant à éliminer pour gagner) et @enemies_in_sight est un array de Player qui sont ceux en vue (= qu'on peut attaquer et qui vont nosu attaquer en retour).
-    Modifie la méthode is_still_ongoing? pour que le jeu continue tant que notre HumanPlayer est toujours en vie et qu'il n'est pas le dernier vivant.
-    Crée une méthode new_players_in_sight qui va avoir pour rôle de rajouter des ennemis en vue. Voici les règles de fonctionnement de cette méthode :
-        Si tous les joueurs du jeu sont déjà "en vue", on ne doit pas en rajouter. Dans ce cas, cela signifie que le nombre d'objets Player dans @enemies_in_sight est égal à l'integer @players_left. Affiche alors un message d'info du type "Tous les joueurs sont déjà en vue".
-        La méthode va lancer un dé à 6 faces et va réagir en fonction de ce résultat aléatoire :
-        Si le dé vaut 1, aucun nouveau joueur adverse n'arrive (afficher un message informant l'utilisateur).
-        Si le dé vaut entre 2 et 4 inclus, un nouvel adversaire arrive en vue. Il faut alors créer un Player avec un nom aléatoire du genre "joueur_1234" ou "joueur_6938" (ou ce que tu veux) et injecter ce Player dans le array @enemies_in_sight . Affiche un message informant l'utilisateur de ce qui se passe.
-        Si le dé vaut 5 ou 6, cette fois c'est 2 nouveaux adversaires qui arrivent en vue. De même qu'au-dessus, il faut les créer et les rajouter au jeu. Rajoute toujours un message informant l'utilisateur.
-    Et maintenant, il faut que cette méthode new_players_in_sight soit appelée dans ton app_3.rb juste avant l'affichage du menu à l'utilisateur. Cela permet d'ajouter, petit à petit, des adversaires en vue !
+* Rajoute deux attributs : @players_left qui est un integer qu'on initialize à 10 et @enemies_in_sight qui vient remplacer @enemies et qui est un array vide au départ. Tu l'as compris car j'ai bien nommé mes variables (prends en de la graine) : @players_left représente le nombre de joueur restant dans le jeu (= nombre restant à éliminer pour gagner) et @enemies_in_sight est un array de Player qui sont ceux en vue (= qu'on peut attaquer et qui vont nosu attaquer en retour).
+* Modifie la méthode is_still_ongoing? pour que le jeu continue tant que notre HumanPlayer est toujours en vie et qu'il n'est pas le dernier vivant.
+* Crée une méthode new_players_in_sight qui va avoir pour rôle de rajouter des ennemis en vue. Voici les règles de fonctionnement de cette méthode :
+    - Si tous les joueurs du jeu sont déjà "en vue", on ne doit pas en rajouter. Dans ce cas, cela signifie que le nombre d'objets Player dans @enemies_in_sight est égal à l'integer @players_left. Affiche alors un message d'info du type "Tous les joueurs sont déjà en vue".
+    - La méthode va lancer un dé à 6 faces et va réagir en fonction de ce résultat aléatoire :
+    - Si le dé vaut 1, aucun nouveau joueur adverse n'arrive (afficher un message informant l'utilisateur).
+    - Si le dé vaut entre 2 et 4 inclus, un nouvel adversaire arrive en vue. Il faut alors créer un Player avec un nom aléatoire du genre "joueur_1234" ou "joueur_6938" (ou ce que tu veux) et injecter ce Player dans le array @enemies_in_sight . Affiche un message informant l'utilisateur de ce qui se passe.
+    - Si le dé vaut 5 ou 6, cette fois c'est 2 nouveaux adversaires qui arrivent en vue. De même qu'au-dessus, il faut les créer et les rajouter au jeu. Rajoute toujours un message informant l'utilisateur.
+* Et maintenant, il faut que cette méthode new_players_in_sight soit appelée dans ton app_3.rb juste avant l'affichage du menu à l'utilisateur. Cela permet d'ajouter, petit à petit, des adversaires en vue !
 
 Voilà, une fois que tu auras fait ça, tu pourras essayer de sortir vivant d'un combat contre 10, 20 voire 100 adversaires ! N'hésite pas à pimper l'affichage pour l'utilisateur et à joueur sur les paramètres (la vie de chaque adversaire, ta vie, la taille des packs de vie qu'on peut trouver, etc.) pour trouver les réglages qui sont les plus fun !
